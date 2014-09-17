@@ -128,9 +128,9 @@ class Period(object):
     def has_occurrences(self):
         return any(self.classify_occurrence(o) for o in self.occurrences)
 
-    def get_time_slot(self, start, end):
+    def get_time_slot(self, start, end, tzinfo=None):
         if start >= self.start and end <= self.end:
-            return Period(self.events, start, end)
+            return Period(self.events, start, end, tzinfo)
         return None
 
     def create_sub_period(self, cls, start=None, tzinfo=None):

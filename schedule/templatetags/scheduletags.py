@@ -53,13 +53,14 @@ def daily_table(context, day, width, width_slot, height, start=8, end=20, increm
       increment - size of a time slot (in minutes)
     """
     user = context['request'].user
+    timezone = context['timezone']
     addable = CHECK_EVENT_PERM_FUNC(None, user)
     if 'calendar' in context:
         addable &= CHECK_CALENDAR_PERM_FUNC(context['calendar'], user)
     context['addable'] = addable
 
     width_occ = width - width_slot
-    day_part = day.get_time_slot(day.start + datetime.timedelta(hours=start), day.start + datetime.timedelta(hours=end))
+    day_part = day.get_time_slot(day.start + datetime.timedelta(hours=start), day.start + datetime.timedelta(hours=end), tzinfo=timezone)
     occurrences = day_part.get_occurrences()
     occurrences = _cook_occurrences(day_part, occurrences, width_occ, height)
     # get slots to display on the left
