@@ -41,7 +41,7 @@ def day_cell(context, calendar, day, month, size="regular"):
 
 
 @register.inclusion_tag("schedule/_daily_table.html", takes_context=True)
-def daily_table(context, day, width, width_slot, height, start=8, end=20, increment=30, timezone=UTC):
+def daily_table(context, day, width, width_slot, height, start=8, end=20, increment=30, timezone='UTC'):
     """
       Display a nice table with occurrences and action buttons.
       Arguments:
