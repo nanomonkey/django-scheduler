@@ -41,7 +41,7 @@ def day_cell(context, calendar, day, month, size="regular"):
 
 
 @register.inclusion_tag("schedule/_daily_table.html", takes_context=True)
-def daily_table(context, day, width, width_slot, height, start=8, end=20, increment=30):
+def daily_table(context, day, width, width_slot, height, start=8, end=20, increment=30, timezone=UTC):
     """
       Display a nice table with occurrences and action buttons.
       Arguments:
@@ -53,7 +53,6 @@ def daily_table(context, day, width, width_slot, height, start=8, end=20, increm
       increment - size of a time slot (in minutes)
     """
     user = context['request'].user
-    timezone = context['django_timezone']
     addable = CHECK_EVENT_PERM_FUNC(None, user)
     if 'calendar' in context:
         addable &= CHECK_CALENDAR_PERM_FUNC(context['calendar'], user)
