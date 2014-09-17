@@ -53,7 +53,7 @@ def daily_table(context, day, width, width_slot, height, start=8, end=20, increm
       increment - size of a time slot (in minutes)
     """
     user = context['request'].user
-    timezone = context['timezone']
+    timezone = context['django_timezone']
     addable = CHECK_EVENT_PERM_FUNC(None, user)
     if 'calendar' in context:
         addable &= CHECK_CALENDAR_PERM_FUNC(context['calendar'], user)
